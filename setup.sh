@@ -13,15 +13,33 @@ if [[ $SKIP_DOWNLOAD != true ]]; then
     # Install nvm
     curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
-    SKIP_DOWNLOAD=true command_path=`readlink -f "${BASH_SOURCE:-$0}"`
+    SKIP_DOWNLOAD=true command_path=$(readlink -f "${BASH_SOURCE:-$0}")
     exit
 
 fi
 
-nvm install --lts
+nvm install node
+nvm use node
 
 # Authenticate with git
 gh auth login
 gh auth setup-git
 
-bash
+
+# Now, make sure node, and nvm are globally available (/usr/bin/node, and /usr/bin/npm), and capable of binding to port 80
+
+nodeCmds=("npm" "node")
+for cmd in ${nodeCmds[@]}; do
+    cmdBinPath=/usr/bin/$cmd
+    if ! [ -f $cmdBinPath ]; then
+        cmdPath=$(which $cmd)
+        sudo ln -s -r $cmdPath $cmdBinPath
+        echo "Command $cmd linked to $cmdBinPath"
+    fi
+
+    # When dealing with node, let's allow it to bind to port 80
+    if [ $cmd == "node" ]; then
+        sudo setcap cap_net_bind_service='+ep' $cmdPath
+        echo "Made $cmd capable of binding to port 80"
+    fi
+done
