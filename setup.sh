@@ -13,13 +13,15 @@ if [[ $SKIP_DOWNLOAD != true ]]; then
     # Install nvm
     curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
-    SKIP_DOWNLOAD=true command_path=$(readlink -f "${BASH_SOURCE:-$0}")
-    exit
+    source ~/.bashrc
+
+    # Install certbot
+    sudo snap install certbot --classic
 
 fi
 
-nvm install node
-nvm use node
+nvm install 21
+nvm use 21
 
 # Authenticate with git
 gh auth login
