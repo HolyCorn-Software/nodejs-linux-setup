@@ -30,6 +30,8 @@ gh auth setup-git
 
 # Now, make sure node, and nvm are globally available (/usr/bin/node, and /usr/bin/npm), and capable of binding to port 80
 
+source ~/.bashrc
+
 nodeCmds=("npm" "node")
 for cmd in ${nodeCmds[@]}; do
     cmdBinPath=/usr/bin/$cmd
