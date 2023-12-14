@@ -20,6 +20,8 @@ if [[ $SKIP_DOWNLOAD != true ]]; then
 
 fi
 
+source ~/.bashrc
+
 nvm install 21
 nvm use 21
 
