@@ -14,13 +14,15 @@ if [[ $SKIP_DOWNLOAD != true ]]; then
     curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
     source ~/.bashrc
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 
     # Install certbot
     sudo snap install certbot --classic
 
 fi
-
-source ~/.bashrc
 
 nvm install 21
 nvm use 21
