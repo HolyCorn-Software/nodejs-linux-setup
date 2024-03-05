@@ -54,3 +54,20 @@ for cmd in ${nodeCmds[@]}; do
         echo "Made $cmd capable of binding to port 80"
     fi
 done
+
+echo "Enter URL of node.js project to setup"
+
+read git_url
+
+echo "Enger codename for the project"
+
+read codename
+
+git clone "$git url" ~/$codename
+
+cd ~/$codename
+
+git submodule update --init --recursive
+
+npm install
+
