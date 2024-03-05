@@ -2,6 +2,8 @@
 # Copyright 2023 HolyCorn Software
 # This utility allows you to setup a debian server for nodejs hosting
 
+NODE_VERSION=19
+
 if [[ $SKIP_DOWNLOAD != true ]]; then
 
     # Install gh
@@ -24,8 +26,8 @@ if [[ $SKIP_DOWNLOAD != true ]]; then
 
 fi
 
-nvm install 21
-nvm use 21
+nvm install $NODE_VERSION
+nvm use $NODE_VERSION
 
 # Authenticate with git
 gh auth login
@@ -41,6 +43,7 @@ for cmd in ${nodeCmds[@]}; do
     cmdBinPath=/usr/bin/$cmd
     if ! [ -f $cmdBinPath ]; then
         cmdPath=$(which $cmd)
+        sudo rm -f $cmdBinPath
         sudo ln -s -r $cmdPath $cmdBinPath
         echo "Command $cmd linked to $cmdBinPath"
     fi
