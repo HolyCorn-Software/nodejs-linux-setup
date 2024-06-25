@@ -30,8 +30,8 @@ NODE_VERSION=19
 # nvm use $NODE_VERSION
 
 # Authenticate with git
-gh auth login
-gh auth setup-git
+# gh auth login
+# gh auth setup-git
 
 
 # # Now, make sure node, and nvm are globally available (/usr/bin/node, and /usr/bin/npm), and capable of binding to port 80
