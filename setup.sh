@@ -63,7 +63,7 @@ echo "Enger codename for the project"
 
 read codename
 
-git clone "$git url" ~/$codename
+git clone "$git_url" ~/$codename
 
 cd ~/$codename
 
