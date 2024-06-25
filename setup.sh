@@ -61,7 +61,7 @@ read git_url
 
 echo "Enter codename for the project"
 
-read codename
+read -p "Enter project codename" codename
 
 git clone "$git url" ~/$codename
 
