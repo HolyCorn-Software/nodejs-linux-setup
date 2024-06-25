@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 # Copyright 2023 HolyCorn Software
 # This utility allows you to setup a debian server for nodejs hosting
 
